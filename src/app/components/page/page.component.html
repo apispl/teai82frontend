@@ -1,0 +1,59 @@
+<mat-toolbar color="primary">
+    <span>My notes</span>
+</mat-toolbar>
+
+<div id="container">
+  <mat-card>
+    <h1>New note</h1>
+    <form (ngSubmit)="onSubmit()" #placeNoteForm="ngForm">
+      <div class="form-group">
+        <label for="text">Text:</label>
+        <input type="text" [(ngModel)]="oneNote.text" placeholder="Enter text" class="form-control" id="text" name="text" required>
+      </div>
+      <div style="text-align: center;">
+        <button type="submit" [disabled]="!placeNoteForm" class="btn btn-success">Add</button>
+      </div>
+    </form>
+  </mat-card>
+
+  <mat-card>
+    <h1>Edit note</h1>
+    <form (ngSubmit)="onSubmitEdit()" #placeEditNote="ngForm">
+
+      <label for="noteId">Note ID: </label>
+      <select class="form-control" id="noteId"
+              required
+              [(ngModel)]="noteToEdit.id" name="noteId">
+        <option *ngFor="let ind of indexes" [value]="ind">{{ind}}</option>
+      </select>
+
+      <label for="editText"></label>
+      <input type="text" [(ngModel)]="noteToEdit.text" class="form-control" id="editText" name="editText" required>
+      <br>
+
+      <div style="text-align: center;">
+        <button type="submit" [disabled]="!placeEditNote" class="btn btn-success">Edit</button>
+      </div>
+    </form>
+  </mat-card>
+
+  <mat-card *ngFor="let note of notes; index as i">
+    <mat-card-header>
+      <mat-card-title>
+        <h1>
+          Note number {{note.id}}
+        </h1>
+      </mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <p>
+        {{note.text}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <div style="text-align: center;" >
+        <mat-button-toggle>Delete</mat-button-toggle>
+      </div>
+    </mat-card-actions>
+  </mat-card>
+</div>

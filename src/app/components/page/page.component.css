@@ -1,9 +1,14 @@
-mat-card{
+mat-card {
   max-width: 400px;
   max-height: 800px;
   margin: 4px;
 }
 #container{
+  justify-content: center;
+  display: flex;
+  flex-flow: row wrap;
+}
+#container1{
   justify-content: center;
   display: flex;
   flex-flow: row wrap;
